@@ -1,0 +1,31 @@
+server:
+  port: 56010
+spring:
+  application:
+    name: service1
+  cloud:
+    nacos:
+      config:
+#        server-addr: 127.0.0.1:8848
+#        VIP或配多个(集群至少3)
+        server-addr: 127.0.0.1:8848,127.0.0.1:8849,127.0.0.1:8850
+        namespace: a183ed00-0100-4c90-be69-06454325101c
+#        主配置 : 优先级高
+        file-extension: yaml
+        group: TEST_GROUP
+#        扩展配置 : 优先级中,n越大,优先级越高
+        ext-config[0]:
+         data-id: ext-config-common01.properties
+        ext-config[1]:
+         data-id: ext-config-common02.properties
+         group: GLOBAL_GROUP
+        ext-config[2]:
+         data-id: ext-config-common03.properties
+         group: REFRESH_GROUP
+         refresh: true
+#         关闭不读取
+#        enabled: false
+#         共享配置 : 优先级s低
+#        shared-dataids:
+#        refreshable-dataids:
+
